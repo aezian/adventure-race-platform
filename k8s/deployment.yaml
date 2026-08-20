@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adventure-race-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: adventure-race-api
+  template:
+    metadata:
+      labels:
+        app: adventure-race-api
+    spec:
+      containers:
+        - name: adventure-race-api
+          image: ehsanadventureregistry.azurecr.io/adventure-race-platform:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000

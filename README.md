@@ -56,3 +56,34 @@ Next stages planned for this project:
 ## Project Purpose
 
 This repository is being developed as a hands-on DevOps learning and portfolio project. It represents the application workload that will later be containerized, deployed to AKS, and managed using Infrastructure as Code and CI/CD.
+
+## Docker
+
+Build the Docker image:
+
+```bash
+docker build -t adventure-race-platform .
+
+Run the container locally:
+docker run -p 3000:3000 adventure-race-platform
+Test the API:
+curl http://localhost:3000/health
+curl http://localhost:3000/events
+Azure Container Registry
+Login to ACR:
+az acr login --name ehsanadventureregistry
+Tag the image for ACR:
+docker tag adventure-race-platform:latest ehsanadventureregistry.azurecr.io/adventure-race-platform:latest
+Push the image to ACR:
+docker push ehsanadventureregistry.azurecr.io/adventure-race-platform:latest
+Verify repositories and tags:
+az acr repository list --name ehsanadventureregistry --output json
+az acr repository show-tags --name ehsanadventureregistry --repository adventure-race-platform --output table
+
+Then:
+
+```bash
+git add README.md
+git commit -m "Document Docker and ACR workflow"
+git push
+

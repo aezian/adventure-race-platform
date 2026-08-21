@@ -87,3 +87,32 @@ git add README.md
 git commit -m "Document Docker and ACR workflow"
 git push
 
+
+## Kubernetes
+
+Apply the Kubernetes manifests:
+
+```bash
+kubectl apply -f k8s/
+Check running Pods, Deployment, and Service:
+kubectl get pods
+kubectl get deployment adventure-race-api
+kubectl get service adventure-race-api-service
+View application logs:
+kubectl logs deployment/adventure-race-api
+Access the app locally using port-forward:
+kubectl port-forward service/adventure-race-api-service 4000:3000
+Test the API:
+curl http://localhost:4000/health
+curl http://localhost:4000/events
+Scale the deployment manually:
+kubectl scale deployment adventure-race-api --replicas=3
+kubectl scale deployment adventure-race-api --replicas=2
+Check rollout status and history:
+kubectl rollout status deployment/adventure-race-api
+kubectl rollout history deployment/adventure-race-api
+Rollback to the previous version:
+kubectl rollout undo deployment/adventure-race-api
+Describe Kubernetes resources:
+kubectl describe deployment adventure-race-api
+kubectl describe service adventure-race-api-service

@@ -1,0 +1,33 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          creds: |
+            {
+              "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
+              "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}",
+              "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
+            }
+
+      - name: Login to Azure Container Registry
+        run: az acr login --name ehsanadventureregistry
+
+      - name: Build Docker image
+        run: docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/adventure-race-platform:${{ github.sha }} .
+
+      - name: Push Docker image
+        run: docker push ${{ secrets.ACR_LOGIN_SERVER }}/adventure-race-platform:${{ github.sha }}

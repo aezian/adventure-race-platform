@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: adventure-race-api
-          image: ehsanadventureregistry.azurecr.io/adventure-race-platform:latest
+          image: ehsanadventureregistry.azurecr.io/adventure-race-platform:v2
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000

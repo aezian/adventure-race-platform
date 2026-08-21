@@ -12,7 +12,8 @@ app.use((req, res, next) => {
 app.get ("/health" , (req, res) => {
 	res.json({
 		status: "ok",
-		service: "adventure-race-platform"
+		service: "adventure-race-platform",
+		version: "v2"
 });
 });
 

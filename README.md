@@ -116,3 +116,8 @@ kubectl rollout undo deployment/adventure-race-api
 Describe Kubernetes resources:
 kubectl describe deployment adventure-race-api
 kubectl describe service adventure-race-api-service
+
+
+GitHub Actions builds image automatically
+Image is pushed to ACR with commit SHA tag
+Kubernetes can deploy that exact image

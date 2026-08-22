@@ -12,9 +12,11 @@ spec:
       labels:
         app: adventure-race-api
     spec:
+      imagePullSecrets:
+        - name: acr-pull-secret
       containers:
         - name: adventure-race-api
-          image: ehsanadventureregistry.azurecr.io/adventure-race-platform:v2
+          image: ehsanadventureregistry.azurecr.io/adventure-race-platform:c9455f93b7a4b40f12daee1ee77879fa9789a35d
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
